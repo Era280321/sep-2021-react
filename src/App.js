@@ -17,11 +17,14 @@ function App() {
     return (
 <div>
 
+    <div className="usersAndPosts">
     <Users/>
 
     <hr/>
 
 <Posts/>
+
+    </div>
 
     <hr/>
 
