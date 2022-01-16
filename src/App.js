@@ -1,10 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import {useEffect, useState} from "react";
+import Flights from "./components/Flights";
 
 function App() {
+
+
   return (
-    <div className="App">
-    <h1>Hello</h1>
+    <div>
+      <Flights/>
+
     </div>
   );
 }
