@@ -1,34 +1,39 @@
-import UserDetails from "./components/UserDetails";
-import Post from "./components/Post";
 import Users from "./components/Users";
-import Posts from "./components/Posts";
+import Form from "./components/form/form";
+import {useEffect, useState} from "react";
+import {userService} from "./services/user.service";
 
-import css from "./App.module.css";
-import {useState} from "react";
-import {postService} from "./services/post.service";
+const App = ()=> {
 
-function App() {
-    const [user, setUser] = useState(null)
-    const [userId, setUserId] = useState(null);
-    const [posts, setPosts] = useState([]);
+    const [users, setUsers]=useState([])
+    const [filteredUsers, setFilteredUsers]=useState([])
 
-    const getUser = (user) => {
-        setUser(user)
+    useEffect(()=>{
+        userService.getAll().then( value => {
+            setUsers([...value])
+            setFilteredUsers([...value])
+        })
+    },[])
 
+const getFilter = (data) =>{
+
+        let filterArr = [...users]
+
+    if(data.name){
+        filterArr=filterArr.filter(user =>user.name.toLowerCase().includes(data.name.toLowerCase()))
     }
-
-    const getUserId = (id) => {
-        postService.getByUserId(id).then(value => setPosts([...value]))
-
+    if(data.username){
+        filterArr=filterArr.filter(user =>user.username.toLowerCase().includes(data.username.toLowerCase()))
     }
-
+    if(data.email){
+        filterArr=filterArr.filter(user =>user.email.toLowerCase().includes(data.email.toLowerCase()))
+    }
+    setFilteredUsers(filterArr)
+}
     return (
         <div>
-            <div className={css.wrap}>
-                <Users getUser={getUser}/>
-                {user && <UserDetails user={user} getUserId={getUserId}/>}
-            </div>
-            {!!posts.length && <Posts posts={posts}/>}
+            <Form getFilter={getFilter}/>
+            <Users users={filteredUsers}/>
         </div>
     );
 }
