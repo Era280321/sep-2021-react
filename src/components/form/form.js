@@ -1,19 +1,19 @@
 import {useState} from "react";
 
-const Form = ({getFilter})=> {
+const Form = ({getFilter}) => {
 
-    const [form,setForm] = useState({name:'',username:'',email:''});
+    const [form, setForm] = useState({name: '', username: '', email: ''});
 
-    const formHandler = (e) =>{
-        const eventData = {...form,[e.target.name]:e.target.value}
+    const formHandler = (e) => {
+        const eventData = {...form, [e.target.name]: e.target.value}
         setForm({...form, ...eventData})
 
     }
 
-const onSubmit =(e)=>{
+    const onSubmit = (e) => {
         e.preventDefault()
-    getFilter(form)
-}
+        getFilter(form)
+    }
 
     return (
         <div>
@@ -31,7 +31,7 @@ const onSubmit =(e)=>{
                     <input type="text" name={"email"} value={form.email} onChange={formHandler}/>
                 </label>
 
-                <button onClick={onSubmit}>Filter </button>
+                <button onClick={onSubmit}>Filter</button>
 
 
             </form>
