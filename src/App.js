@@ -10,26 +10,27 @@ import {postService} from "./services/post.service";
 function App() {
     const [user, setUser] = useState(null)
     const [userId, setUserId] = useState(null);
-    const [posts, setPosts] = useState(null);
+    const [posts, setPosts] = useState([]);
 
-    const getUser=(user)=>{
+    const getUser = (user) => {
         setUser(user)
 
     }
 
-    const getUserId = (id)=>{
-postService.getByUserId(id).then(value => setPosts([...value]))
+    const getUserId = (id) => {
+        postService.getByUserId(id).then(value => setPosts([...value]))
+
     }
 
-  return (
-    <div>
-      <div className={css.wrap}>
-        <Users getUser={getUser}/>
-          {user&&<UserDetails user={user} getUserId={getUserId}/>}
-      </div>
-        {!!posts.length && <Posts posts={posts}/>}
-    </div>
-  );
+    return (
+        <div>
+            <div className={css.wrap}>
+                <Users getUser={getUser}/>
+                {user && <UserDetails user={user} getUserId={getUserId}/>}
+            </div>
+            {!!posts.length && <Posts posts={posts}/>}
+        </div>
+    );
 }
 
 export default App;

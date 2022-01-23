@@ -1,8 +1,10 @@
 import React from 'react';
 import Post from "./Post";
-import {postService} from "../services/post.service";
+import {logDOM} from "@testing-library/react";
+
 
 const Posts = ({posts}) => {
+
     return (
         <div>
             {posts.map(post => <Post key={post.id} post={post}/>)}

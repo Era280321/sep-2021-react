@@ -1,6 +1,7 @@
-
-const Post = ({post:id,userid,title,body}) => {
+const Post = ({post: id, userid, title, body}) => {
+    console.log({title})
     return (
+
         <div>
             <div>id: {id}</div>
             <div>userid: {userid}</div>
