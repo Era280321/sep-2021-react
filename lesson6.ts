@@ -118,7 +118,7 @@
 // }
 //
 
-function showSum(a:number,b:number) {
+function showSum(a:number,b:number):void{
     console.log(a + b);
 }
 showSum(2,3)
@@ -134,7 +134,7 @@ interface ISomeUser{
     age:number
 }
 
-function incAge(someUser:ISomeUser, inc:number){
+function incAge(someUser:ISomeUser, inc:number):ISomeUser{
     someUser.age+=inc
     console.log(someUser)
     return someUser
